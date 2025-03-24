@@ -41,8 +41,8 @@ namespace wGestionClientesBanco
             this.txtCuentasActivas = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btnEliminar = new System.Windows.Forms.Button();
+            this.btnMostrar = new System.Windows.Forms.Button();
             this.lblGestionCliente = new System.Windows.Forms.Label();
             this.lblAplicaCredito = new System.Windows.Forms.Label();
             this.txtAplicaCredito = new System.Windows.Forms.TextBox();
@@ -55,9 +55,9 @@ namespace wGestionClientesBanco
             this.cmbTipoCliente.Items.AddRange(new object[] {
             "Corporativo",
             "Individual"});
-            this.cmbTipoCliente.Location = new System.Drawing.Point(96, 190);
+            this.cmbTipoCliente.Location = new System.Drawing.Point(96, 197);
             this.cmbTipoCliente.Name = "cmbTipoCliente";
-            this.cmbTipoCliente.Size = new System.Drawing.Size(377, 45);
+            this.cmbTipoCliente.Size = new System.Drawing.Size(270, 45);
             this.cmbTipoCliente.TabIndex = 0;
             this.cmbTipoCliente.Text = "Tipo de Cliente";
             this.cmbTipoCliente.SelectedIndexChanged += new System.EventHandler(this.cmbTipoCliente_SelectedIndexChanged);
@@ -65,7 +65,7 @@ namespace wGestionClientesBanco
             // txtNombre
             // 
             this.txtNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombre.Location = new System.Drawing.Point(339, 297);
+            this.txtNombre.Location = new System.Drawing.Point(339, 314);
             this.txtNombre.Name = "txtNombre";
             this.txtNombre.Size = new System.Drawing.Size(323, 44);
             this.txtNombre.TabIndex = 1;
@@ -74,7 +74,7 @@ namespace wGestionClientesBanco
             // 
             this.lblNombre.AutoSize = true;
             this.lblNombre.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombre.Location = new System.Drawing.Point(89, 300);
+            this.lblNombre.Location = new System.Drawing.Point(89, 314);
             this.lblNombre.Name = "lblNombre";
             this.lblNombre.Size = new System.Drawing.Size(132, 37);
             this.lblNombre.TabIndex = 2;
@@ -84,7 +84,7 @@ namespace wGestionClientesBanco
             // 
             this.lblIdentificacion.AutoSize = true;
             this.lblIdentificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIdentificacion.Location = new System.Drawing.Point(89, 394);
+            this.lblIdentificacion.Location = new System.Drawing.Point(430, 200);
             this.lblIdentificacion.Name = "lblIdentificacion";
             this.lblIdentificacion.Size = new System.Drawing.Size(203, 37);
             this.lblIdentificacion.TabIndex = 4;
@@ -93,7 +93,7 @@ namespace wGestionClientesBanco
             // txtIdentificacion
             // 
             this.txtIdentificacion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtIdentificacion.Location = new System.Drawing.Point(339, 387);
+            this.txtIdentificacion.Location = new System.Drawing.Point(655, 200);
             this.txtIdentificacion.Name = "txtIdentificacion";
             this.txtIdentificacion.Size = new System.Drawing.Size(323, 44);
             this.txtIdentificacion.TabIndex = 3;
@@ -102,7 +102,7 @@ namespace wGestionClientesBanco
             // 
             this.lblSaldo.AutoSize = true;
             this.lblSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSaldo.Location = new System.Drawing.Point(89, 468);
+            this.lblSaldo.Location = new System.Drawing.Point(89, 394);
             this.lblSaldo.Name = "lblSaldo";
             this.lblSaldo.Size = new System.Drawing.Size(99, 37);
             this.lblSaldo.TabIndex = 6;
@@ -111,26 +111,26 @@ namespace wGestionClientesBanco
             // txtSaldo
             // 
             this.txtSaldo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSaldo.Location = new System.Drawing.Point(339, 465);
+            this.txtSaldo.Location = new System.Drawing.Point(339, 394);
             this.txtSaldo.Name = "txtSaldo";
             this.txtSaldo.Size = new System.Drawing.Size(323, 44);
             this.txtSaldo.TabIndex = 5;
             // 
             // lstClientes
             // 
-            this.lstClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lstClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lstClientes.FormattingEnabled = true;
-            this.lstClientes.ItemHeight = 37;
-            this.lstClientes.Location = new System.Drawing.Point(721, 190);
+            this.lstClientes.ItemHeight = 31;
+            this.lstClientes.Location = new System.Drawing.Point(774, 314);
             this.lstClientes.Name = "lstClientes";
-            this.lstClientes.Size = new System.Drawing.Size(522, 485);
+            this.lstClientes.Size = new System.Drawing.Size(602, 500);
             this.lstClientes.TabIndex = 7;
             // 
             // lblCuentasActivas
             // 
             this.lblCuentasActivas.AutoSize = true;
             this.lblCuentasActivas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCuentasActivas.Location = new System.Drawing.Point(89, 544);
+            this.lblCuentasActivas.Location = new System.Drawing.Point(89, 475);
             this.lblCuentasActivas.Name = "lblCuentasActivas";
             this.lblCuentasActivas.Size = new System.Drawing.Size(386, 37);
             this.lblCuentasActivas.TabIndex = 9;
@@ -140,16 +140,17 @@ namespace wGestionClientesBanco
             // txtCuentasActivas
             // 
             this.txtCuentasActivas.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCuentasActivas.Location = new System.Drawing.Point(524, 537);
+            this.txtCuentasActivas.Location = new System.Drawing.Point(524, 475);
             this.txtCuentasActivas.Name = "txtCuentasActivas";
             this.txtCuentasActivas.Size = new System.Drawing.Size(138, 44);
             this.txtCuentasActivas.TabIndex = 8;
+            this.txtCuentasActivas.Text = "0";
             this.txtCuentasActivas.Visible = false;
             // 
             // btnAgregar
             // 
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregar.Location = new System.Drawing.Point(150, 743);
+            this.btnAgregar.Location = new System.Drawing.Point(274, 759);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(172, 86);
             this.btnAgregar.TabIndex = 10;
@@ -159,33 +160,34 @@ namespace wGestionClientesBanco
             // 
             // btnEditar
             // 
-            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditar.Location = new System.Drawing.Point(437, 743);
+            this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditar.Location = new System.Drawing.Point(1139, 200);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(172, 86);
+            this.btnEditar.Size = new System.Drawing.Size(114, 48);
             this.btnEditar.TabIndex = 11;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnEliminar
             // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(734, 743);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(172, 86);
-            this.button1.TabIndex = 12;
-            this.button1.Text = "Eliminar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminar.Location = new System.Drawing.Point(1259, 200);
+            this.btnEliminar.Name = "btnEliminar";
+            this.btnEliminar.Size = new System.Drawing.Size(114, 48);
+            this.btnEliminar.TabIndex = 12;
+            this.btnEliminar.Text = "Eliminar";
+            this.btnEliminar.UseVisualStyleBackColor = true;
+            this.btnEliminar.Click += new System.EventHandler(this.btnEliminar_Click);
             // 
-            // button2
+            // btnMostrar
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(1018, 743);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(172, 86);
-            this.button2.TabIndex = 13;
-            this.button2.Text = "Mostrar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnMostrar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMostrar.Location = new System.Drawing.Point(1019, 200);
+            this.btnMostrar.Name = "btnMostrar";
+            this.btnMostrar.Size = new System.Drawing.Size(114, 48);
+            this.btnMostrar.TabIndex = 13;
+            this.btnMostrar.Text = "Mostrar";
+            this.btnMostrar.UseVisualStyleBackColor = true;
             // 
             // lblGestionCliente
             // 
@@ -201,7 +203,7 @@ namespace wGestionClientesBanco
             // 
             this.lblAplicaCredito.AutoSize = true;
             this.lblAplicaCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAplicaCredito.Location = new System.Drawing.Point(89, 629);
+            this.lblAplicaCredito.Location = new System.Drawing.Point(89, 562);
             this.lblAplicaCredito.Name = "lblAplicaCredito";
             this.lblAplicaCredito.Size = new System.Drawing.Size(348, 37);
             this.lblAplicaCredito.TabIndex = 15;
@@ -212,7 +214,7 @@ namespace wGestionClientesBanco
             // 
             this.txtAplicaCredito.Enabled = false;
             this.txtAplicaCredito.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAplicaCredito.Location = new System.Drawing.Point(522, 622);
+            this.txtAplicaCredito.Location = new System.Drawing.Point(522, 559);
             this.txtAplicaCredito.Name = "txtAplicaCredito";
             this.txtAplicaCredito.Size = new System.Drawing.Size(140, 44);
             this.txtAplicaCredito.TabIndex = 16;
@@ -222,12 +224,12 @@ namespace wGestionClientesBanco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1368, 879);
+            this.ClientSize = new System.Drawing.Size(1441, 879);
             this.Controls.Add(this.txtAplicaCredito);
             this.Controls.Add(this.lblAplicaCredito);
             this.Controls.Add(this.lblGestionCliente);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnMostrar);
+            this.Controls.Add(this.btnEliminar);
             this.Controls.Add(this.btnEditar);
             this.Controls.Add(this.btnAgregar);
             this.Controls.Add(this.lblCuentasActivas);
@@ -261,8 +263,8 @@ namespace wGestionClientesBanco
         private System.Windows.Forms.TextBox txtCuentasActivas;
         private System.Windows.Forms.Button btnAgregar;
         private System.Windows.Forms.Button btnEditar;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnEliminar;
+        private System.Windows.Forms.Button btnMostrar;
         private System.Windows.Forms.Label lblGestionCliente;
         private System.Windows.Forms.Label lblAplicaCredito;
         private System.Windows.Forms.TextBox txtAplicaCredito;

@@ -17,7 +17,7 @@ namespace wGestionClientesBanco
             clientes = new List<Cliente>();
         }
 
-        private static GestorClientes Instancia
+        public static GestorClientes Instancia
         {
             get
             {

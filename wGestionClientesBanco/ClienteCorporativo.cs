@@ -13,8 +13,9 @@ namespace wGestionClientesBanco
         public ClienteCorporativo(string nombre, string identificacion, decimal saldo) : base(nombre, identificacion, saldo)
         {
             AccesoLineaCredito = saldo > 50000000;
+           
         }
 
-        public override string CalcularBeneficio() => AccesoLineaCredito ? "Acceso a línea de crédito aprobado." : "No cumple con los requisitos para línea de crédito.";
+        public override string CalcularBeneficio() => AccesoLineaCredito ? "Acceso a línea de crédito aprobado." : "No cumple con los requisitos para acceder a línea de crédito.";
     }
 }
