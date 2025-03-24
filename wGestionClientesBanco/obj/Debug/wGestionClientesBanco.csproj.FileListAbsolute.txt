@@ -1,0 +1,10 @@
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\bin\Debug\wGestionClientesBanco.exe.config
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\bin\Debug\wGestionClientesBanco.exe
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\bin\Debug\wGestionClientesBanco.pdb
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.csproj.AssemblyReference.cache
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.Form1.resources
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.Properties.Resources.resources
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.csproj.GenerateResource.cache
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.csproj.CoreCompileInputs.cache
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.exe
+C:\Users\Marcela\Documents\Eliana\Pascual\semestre3\HerramientasI\wGestionClientesBanco\wGestionClientesBanco\obj\Debug\wGestionClientesBanco.pdb
