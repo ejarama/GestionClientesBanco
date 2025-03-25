@@ -17,6 +17,35 @@ namespace wGestionClientesBanco
             InitializeComponent();
         }
 
+        public void LimpiarCampos()
+        {
+            txtNombre.Clear();
+            txtIdentificacion.Clear();
+            txtSaldo.Clear();
+            cmbTipoCliente.SelectedItem = 0;
+            txtIdentificacion.Focus();
+            txtCuentasActivas.Clear();
+        }
+
+        public void actualizarLista(List<Cliente> listaClientes)
+        {
+            try
+            {
+
+                lstClientes.Items.Clear();
+
+                foreach (var cliente in listaClientes)
+                {
+                    lstClientes.Items.Add($"{cliente.Nombre} - Identificación: {cliente.Identificacion}, Saldo: {cliente.Saldo}");
+                }
+
+            }
+            catch (Exception e)
+            {
+
+                throw e;
+            }
+        }
         private void cmbTipoCliente_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -26,19 +55,16 @@ namespace wGestionClientesBanco
                 if (tipoCliente == "Individual")
                 {
                     lblCuentasActivas.Visible = true;
-                    txtCuentasActivas.Visible = true;
-                    
+                    txtCuentasActivas.Visible = true; 
                 }
                 else
                 {
                     lblCuentasActivas.Visible = false;
                     txtCuentasActivas.Visible = false;
-                   
                 }
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show($"Error: {ex.Message}");
             }
         }
@@ -47,6 +73,7 @@ namespace wGestionClientesBanco
         {
             try
             {
+                //validaciones
                 string tipoCliente = "";
                 if (cmbTipoCliente.SelectedItem == null)
                 {
@@ -58,19 +85,20 @@ namespace wGestionClientesBanco
                     tipoCliente = cmbTipoCliente.SelectedItem.ToString();
                 }
 
-
                 string nombre = txtNombre.Text.Trim().ToUpper();
                 if (string.IsNullOrWhiteSpace(nombre))
                 {
                     MessageBox.Show("El nombre no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
                 string identificacion = txtIdentificacion.Text.Trim().ToUpper();
                 if (string.IsNullOrWhiteSpace(identificacion))
                 {
                     MessageBox.Show("El campo identificación no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
                 if (!decimal.TryParse(txtSaldo.Text, out decimal saldo) || saldo < 0)
                 {
                     MessageBox.Show("Ingrese un saldo valido mayor a 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -85,14 +113,13 @@ namespace wGestionClientesBanco
                     return;
                 }
 
-
+                //se crea el cliente
                 var cliente = ClienteFactory.CrearCliente(tipoCliente, nombre, identificacion, saldo, cuentasActivas);
-                
                 GestorClientes.Instancia.AgregarCliente(cliente);
 
+                //Informa el resultado de calcular beneficio según el tipo de cliente
                 MessageBox.Show("Cliente agregado con éxito. \n" + cliente.CalcularBeneficio(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //MessageBox.Show(cliente.CalcularBeneficio(), "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
+                
                 LimpiarCampos();
 
             }
@@ -103,36 +130,20 @@ namespace wGestionClientesBanco
             }
         }
 
-        public void LimpiarCampos()
-        {
-            txtNombre.Clear();
-            txtIdentificacion.Clear();
-            txtSaldo.Clear();
-            cmbTipoCliente.SelectedItem = 0;
-            txtIdentificacion.Focus();
-            txtCuentasActivas.Clear();
-        }
-
-        public void actualizarLista(List<Cliente> listaClientes)
-        {
-            lstClientes.Items.Clear();
-            
-            foreach (var cliente in listaClientes)
-            {
-                lstClientes.Items.Add($"{cliente.Nombre} - Identificación: {cliente.Identificacion}, Saldo: {cliente.Saldo}");
-            }
-        }
+    
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
             try
             {
+                //validación de identificaicón
                 string identificacion = txtIdentificacion.Text.Trim().ToUpper();
                 if (string.IsNullOrWhiteSpace(identificacion))
                 {
                     MessageBox.Show("El campo identificación no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                //Se usa el metodo para eliminar el cliente
                 GestorClientes.Instancia.EliminarCliente(identificacion);
                 MessageBox.Show("Cliente fue eliminado con éxito.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LimpiarCampos();
@@ -148,6 +159,7 @@ namespace wGestionClientesBanco
         {
             try
             {
+                //obtiene la lista de clientes y la muestra en el listbox
                 List<Cliente> listaClientes = GestorClientes.Instancia.ObtenerClientes();
                 actualizarLista(listaClientes);
             }
@@ -165,6 +177,7 @@ namespace wGestionClientesBanco
         {
             try
             {
+                //se valida la identificación
                 string identificacion = txtIdentificacion.Text.Trim().ToUpper();
                 if (string.IsNullOrWhiteSpace(identificacion))
                 {
@@ -172,7 +185,7 @@ namespace wGestionClientesBanco
                     return;
                 }
 
-                //busca el cliente con esa identificación
+                //busca el cliente con la identificación
                 var cliente = GestorClientes.Instancia.ObtenerClientes()
                                 .FirstOrDefault(c => c.Identificacion == identificacion);
 
@@ -215,6 +228,7 @@ namespace wGestionClientesBanco
                     return;
                 }
 
+                //reemplaza por los nuevos datos
                 cliente.Nombre = nombre;
                 cliente.Saldo = saldo;
                 if (tipoCliente == "Individual")
@@ -241,6 +255,7 @@ namespace wGestionClientesBanco
         {
             try
             {
+                //al cambiar el foco del campo identificación busca si el cliente existe y lo muestra
                 string identificacion = txtIdentificacion.Text.Trim().ToUpper();
                 if (!string.IsNullOrWhiteSpace(identificacion))
                 {
@@ -275,6 +290,7 @@ namespace wGestionClientesBanco
         {
             try
             {
+                //al dar doble clic en un elemento de la lista, rellena los campos del formulario
                 if (lstClientes.SelectedItem != null)
                 {
                     var clienteSeleccionado = lstClientes.SelectedItem.ToString();

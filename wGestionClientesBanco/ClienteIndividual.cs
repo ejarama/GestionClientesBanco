@@ -20,7 +20,7 @@ namespace wGestionClientesBanco
             CantidadCuentasActivas = cantidadCuentasActivas;
         }
 
-        public override string CalcularBeneficio() => $" Cliente Individual con {CantidadCuentasActivas} cuentas activas.";
+        public override string CalcularBeneficio() => $"Cliente Individual con {CantidadCuentasActivas} cuentas activas.";
 
     }
     
