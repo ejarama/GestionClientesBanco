@@ -67,7 +67,15 @@ namespace wGestionClientesBanco
 
         public List<Cliente> ObtenerClientes()
         {
-            return clientes;
+            try
+            {
+                return clientes;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
         } 
 
         public void EditarCliente(string identificacion, string nuevoNombre, decimal nuevoSaldo)
