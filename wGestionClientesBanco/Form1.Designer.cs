@@ -124,6 +124,7 @@ namespace wGestionClientesBanco
             this.lstClientes.Name = "lstClientes";
             this.lstClientes.Size = new System.Drawing.Size(602, 407);
             this.lstClientes.TabIndex = 7;
+            this.lstClientes.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.lstClientes_MouseDoubleClick);
             // 
             // lblCuentasActivas
             // 

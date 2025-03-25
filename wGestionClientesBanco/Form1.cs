@@ -239,27 +239,74 @@ namespace wGestionClientesBanco
 
         private void txtIdentificacion_Leave(object sender, EventArgs e)
         {
-            string identificacion = txtIdentificacion.Text.Trim().ToUpper();
-            if (!string.IsNullOrWhiteSpace(identificacion))
+            try
             {
-                //busca el cliente con esa identificación
-                var cliente = GestorClientes.Instancia.ObtenerClientes()
-                                .FirstOrDefault(c => c.Identificacion == identificacion);
-
-                if (cliente != null)
+                string identificacion = txtIdentificacion.Text.Trim().ToUpper();
+                if (!string.IsNullOrWhiteSpace(identificacion))
                 {
-                    txtNombre.Text = cliente.Nombre;
-                    txtSaldo.Text = cliente.Saldo.ToString();
-                    
-                }
-                else
-                {
-                    txtNombre.Clear();
-                    txtSaldo.Clear();
-                    txtCuentasActivas.Clear();
-                }
-                return;
+                    //busca el cliente con esa identificación
+                    var cliente = GestorClientes.Instancia.ObtenerClientes()
+                                    .FirstOrDefault(c => c.Identificacion == identificacion);
 
+                    if (cliente != null)
+                    {
+                        txtNombre.Text = cliente.Nombre;
+                        txtSaldo.Text = cliente.Saldo.ToString();
+
+                    }
+                    else
+                    {
+                        txtNombre.Clear();
+                        txtSaldo.Clear();
+                        txtCuentasActivas.Clear();
+                    }
+                    return;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+        }
+
+        private void lstClientes_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (lstClientes.SelectedItem != null)
+                {
+                    var clienteSeleccionado = lstClientes.SelectedItem.ToString();
+
+                    // Extraer la identificación
+                    string identificacion = clienteSeleccionado.Split(new[] { "Identificación: ", ", " }, StringSplitOptions.None)[1];
+
+                    // Buscar el cliente usando la identificación
+                    var cliente = GestorClientes.Instancia.ObtenerClientes()
+                                        .FirstOrDefault(c => c.Identificacion == identificacion);
+
+                    if (cliente != null)
+                    {
+                        txtIdentificacion.Text = cliente.Identificacion;
+                        txtNombre.Text = cliente.Nombre;
+                        txtSaldo.Text = cliente.Saldo.ToString();
+
+                    }
+                    else
+                    {
+                        txtNombre.Clear();
+                        txtSaldo.Clear();
+                        txtCuentasActivas.Clear();
+                    }
+                    return;
+
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
         }
     }
