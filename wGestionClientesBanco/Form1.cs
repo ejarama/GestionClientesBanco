@@ -143,6 +143,7 @@ namespace wGestionClientesBanco
                     MessageBox.Show("El campo identificación no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+                
                 //Se usa el metodo para eliminar el cliente
                 GestorClientes.Instancia.EliminarCliente(identificacion);
                 MessageBox.Show("Cliente fue eliminado con éxito.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -185,16 +186,7 @@ namespace wGestionClientesBanco
                     return;
                 }
 
-                //busca el cliente con la identificación
-                var cliente = GestorClientes.Instancia.ObtenerClientes()
-                                .FirstOrDefault(c => c.Identificacion == identificacion);
-
-                if (cliente == null)
-                {
-                    MessageBox.Show("Cliente no encontrado.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
+               
                 //valida los datos a ingresar
 
                 string tipoCliente = "";
@@ -207,14 +199,15 @@ namespace wGestionClientesBanco
                 {
                     tipoCliente = cmbTipoCliente.SelectedItem.ToString();
                 }
-                string nombre = txtNombre.Text.Trim().ToUpper();
-                if (string.IsNullOrWhiteSpace(nombre))
+                
+                string nuevoNombre = txtNombre.Text.Trim().ToUpper();
+                if (string.IsNullOrWhiteSpace(nuevoNombre))
                 {
                     MessageBox.Show("El nombre no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (!decimal.TryParse(txtSaldo.Text, out decimal saldo) || saldo < 0)
+                if (!decimal.TryParse(txtSaldo.Text, out decimal nuevoSaldo) || nuevoSaldo < 0)
                 {
                     MessageBox.Show("Ingrese un saldo valido mayor a 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -228,9 +221,9 @@ namespace wGestionClientesBanco
                     return;
                 }
 
-                //reemplaza por los nuevos datos
-                cliente.Nombre = nombre;
-                cliente.Saldo = saldo;
+                //reemplaza los nuevos datos
+                GestorClientes.Instancia.EditarCliente(identificacion, nuevoNombre, nuevoSaldo);
+
                 if (tipoCliente == "Individual")
                 {
                     if (cuentasActivas > 3)

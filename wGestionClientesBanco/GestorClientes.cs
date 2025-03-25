@@ -25,7 +25,6 @@ namespace wGestionClientesBanco
                 if (_instancia == null)
                 {
                     _instancia = new GestorClientes();
-
                 }
                 return _instancia;
                     
@@ -70,5 +69,26 @@ namespace wGestionClientesBanco
         {
             return clientes;
         } 
+
+        public void EditarCliente(string identificacion, string nuevoNombre, decimal nuevoSaldo)
+        {
+            try
+            {
+                var cliente = clientes.FirstOrDefault(c => c.Identificacion == identificacion);
+                if (cliente == null)
+                {
+                    throw new InvalidOperationException("Cliente no encontrado.");
+                }
+
+                cliente.Nombre = nuevoNombre;
+                cliente.Saldo = nuevoSaldo;
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+        }
     }
 }
