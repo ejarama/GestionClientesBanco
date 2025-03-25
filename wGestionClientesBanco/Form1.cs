@@ -27,8 +27,7 @@ namespace wGestionClientesBanco
                 {
                     lblCuentasActivas.Visible = true;
                     txtCuentasActivas.Visible = true;
-                    lblAplicaCredito.Visible = false;
-                    txtAplicaCredito.Visible = false;
+                    
                 }
                 else
                 {
@@ -78,8 +77,9 @@ namespace wGestionClientesBanco
                     return;
                 }
 
-               
-                if (!int.TryParse(txtCuentasActivas.Text, out int cuentasActivas) || cuentasActivas < 0)
+                if (txtCuentasActivas.Text == "")
+                    txtCuentasActivas.Text = "0";
+                if (!int.TryParse(txtCuentasActivas.Text, out int cuentasActivas) || cuentasActivas <0)
                 {
                     MessageBox.Show("Error en la cantidad de cuentas activas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
@@ -90,11 +90,9 @@ namespace wGestionClientesBanco
                 
                 GestorClientes.Instancia.AgregarCliente(cliente);
 
-                MessageBox.Show("Cliente agregado con éxito.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                MessageBox.Show(cliente.CalcularBeneficio(), "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                List<Cliente> listaClientes = new List<Cliente>();
-                listaClientes = GestorClientes.Instancia.ObtenerClientes();
-                actualizarLista(listaClientes);
+                MessageBox.Show("Cliente agregado con éxito. \n" + cliente.CalcularBeneficio(), "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                //MessageBox.Show(cliente.CalcularBeneficio(), "info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
                 LimpiarCampos();
 
             }
@@ -111,7 +109,8 @@ namespace wGestionClientesBanco
             txtIdentificacion.Clear();
             txtSaldo.Clear();
             cmbTipoCliente.SelectedItem = 0;
-            txtNombre.Focus();
+            txtIdentificacion.Focus();
+            txtCuentasActivas.Clear();
         }
 
         public void actualizarLista(List<Cliente> listaClientes)
@@ -126,7 +125,142 @@ namespace wGestionClientesBanco
 
         private void btnEliminar_Click(object sender, EventArgs e)
         {
+            try
+            {
+                string identificacion = txtIdentificacion.Text.Trim().ToUpper();
+                if (string.IsNullOrWhiteSpace(identificacion))
+                {
+                    MessageBox.Show("El campo identificación no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                GestorClientes.Instancia.EliminarCliente(identificacion);
+                MessageBox.Show("Cliente fue eliminado con éxito.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LimpiarCampos();
+            }
+            catch (Exception ex)
+            {
 
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnListar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                List<Cliente> listaClientes = GestorClientes.Instancia.ObtenerClientes();
+                actualizarLista(listaClientes);
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string identificacion = txtIdentificacion.Text.Trim().ToUpper();
+                if (string.IsNullOrWhiteSpace(identificacion))
+                {
+                    MessageBox.Show("El campo identificación no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //busca el cliente con esa identificación
+                var cliente = GestorClientes.Instancia.ObtenerClientes()
+                                .FirstOrDefault(c => c.Identificacion == identificacion);
+
+                if (cliente == null)
+                {
+                    MessageBox.Show("Cliente no encontrado.","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                //valida los datos a ingresar
+
+                string tipoCliente = "";
+                if (cmbTipoCliente.SelectedItem == null)
+                {
+                    MessageBox.Show("Debe seleccionar un tipo de cliente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+                else
+                {
+                    tipoCliente = cmbTipoCliente.SelectedItem.ToString();
+                }
+                string nombre = txtNombre.Text.Trim().ToUpper();
+                if (string.IsNullOrWhiteSpace(nombre))
+                {
+                    MessageBox.Show("El nombre no puede estar vacio", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (!decimal.TryParse(txtSaldo.Text, out decimal saldo) || saldo < 0)
+                {
+                    MessageBox.Show("Ingrese un saldo valido mayor a 0", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                if (txtCuentasActivas.Text == "")
+                    txtCuentasActivas.Text = "0";
+                if (!int.TryParse(txtCuentasActivas.Text, out int cuentasActivas) || cuentasActivas < 0)
+                {
+                    MessageBox.Show("Error en la cantidad de cuentas activas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                cliente.Nombre = nombre;
+                cliente.Saldo = saldo;
+                if (tipoCliente == "Individual")
+                {
+                    if (cuentasActivas > 3)
+                        throw new InvalidOperationException("Clientes Individuales no pueden tener más de 3 cuentas activas.");
+
+                }
+                MessageBox.Show("Cliente fue actualizado con éxito.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                LimpiarCampos();
+
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show($"Error: {ex.Message}","Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private void txtIdentificacion_Leave(object sender, EventArgs e)
+        {
+            string identificacion = txtIdentificacion.Text.Trim().ToUpper();
+            if (!string.IsNullOrWhiteSpace(identificacion))
+            {
+                //busca el cliente con esa identificación
+                var cliente = GestorClientes.Instancia.ObtenerClientes()
+                                .FirstOrDefault(c => c.Identificacion == identificacion);
+
+                if (cliente != null)
+                {
+                    txtNombre.Text = cliente.Nombre;
+                    txtSaldo.Text = cliente.Saldo.ToString();
+                    
+                }
+                else
+                {
+                    txtNombre.Clear();
+                    txtSaldo.Clear();
+                    txtCuentasActivas.Clear();
+                }
+                return;
+
+            }
         }
     }
 }

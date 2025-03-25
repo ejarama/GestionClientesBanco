@@ -16,6 +16,6 @@ namespace wGestionClientesBanco
            
         }
 
-        public override string CalcularBeneficio() => AccesoLineaCredito ? "Acceso a línea de crédito aprobado." : "No cumple con los requisitos para acceder a línea de crédito.";
+        public override string CalcularBeneficio() => AccesoLineaCredito ? "Acceso a línea de crédito aprobado." : "No cuenta con saldo suficiente para acceso a línea de crédito.";
     }
 }

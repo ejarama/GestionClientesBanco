@@ -12,9 +12,9 @@ namespace wGestionClientesBanco
 
         public ClienteIndividual(string nombre, string identificacion, decimal saldo, int cantidadCuentasActivas) : base(nombre, identificacion, saldo)
         {
-            if (CantidadCuentasActivas > 3)
+            if (cantidadCuentasActivas > 3)
             {
-                new InvalidOperationException("Clientes Individuales no pueden tener más de 3 cuentas activas.");
+               throw new InvalidOperationException("Clientes Individuales no pueden tener más de 3 cuentas activas.");
             }
 
             CantidadCuentasActivas = cantidadCuentasActivas;
